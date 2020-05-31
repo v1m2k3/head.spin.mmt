@@ -22,4 +22,9 @@ public class MMTHotelListing {
         int xOffset = (int) (aAmount/500 * 3.5);
         this.browser.slideWebElementCssSelector("span[class*='input-range__slider']", xOffset, 0);
     }
+
+    //Select second element from the list of check boxes
+    public  void setUserRating(){
+        this.browser.clickWebElementByCSS("#hlistpg_fr_user_rating > ul > li:nth-child(2) > span.checkmarkOuter", 1);
+    }
 }
