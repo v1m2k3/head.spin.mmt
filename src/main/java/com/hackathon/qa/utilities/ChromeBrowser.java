@@ -11,5 +11,6 @@ public class ChromeBrowser extends Browser {
     public ChromeBrowser(){
         super(new ChromeDriver());
     }
+
 }
 

@@ -6,16 +6,21 @@ public class MMTLogin {
 
     Browser browser;
 
-    public MMTLogin(Browser aBrowser){
+    public MMTLogin(Browser aBrowser) {
         this.browser = aBrowser;
     }
 
-    public void doLogin(String aUserName, String aPassword){
+    public void doLogin(String aUserName, String aPassword) {
         this.clickOnloginOrCreateAccountElement();
         this.sendKeysToUsername(aUserName);
         this.clickOnContinueButtonOnUserNameDialog();
         this.sendKeysToPassword(aPassword);
         this.clickLoginButton();
+        this.dontContinueUntilPageIsLoaded();
+    }
+
+    private void dontContinueUntilPageIsLoaded() {
+        this.browser.sleep(10);
     }
 
     private void clickLoginButton() {
