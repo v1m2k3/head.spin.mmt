@@ -62,6 +62,18 @@ public class MMTTest {
         //Select room
         HotelDetails hotelDetails = new HotelDetails(this.browser);
         hotelDetails.selectFirstRoomOption();
+
+        //Wait for the page to load
+        this.browser.sleep(5);
+
+        //Enter traveller details
+        MMTReviewBooking reviewBooking = new MMTReviewBooking(this.browser);
+        reviewBooking.clickToSelectPayEntire();
+        reviewBooking.fillFirstName("Manoj");
+        reviewBooking.fillLastName("V");
+        reviewBooking.selectTwoSpecialRequests();
+        reviewBooking.unCheckDonation();
+        reviewBooking.clickPayNow();
     }
 
     @Test
@@ -121,6 +133,18 @@ public class MMTTest {
 
         HotelDetails hotelDetails = new HotelDetails(this.browser);
         hotelDetails.selectFirstRoomOption();
+
+        this.browser.sleep(5);
+
+
+        MMTReviewBooking reviewBooking = new MMTReviewBooking(this.browser);
+        reviewBooking.closeBlockingModal();
+        reviewBooking.clickToSelectPayEntire();
+        reviewBooking.fillFirstName("Manoj");
+        reviewBooking.fillLastName("V");
+        reviewBooking.selectTwoSpecialRequests();
+        reviewBooking.unCheckDonation();
+        reviewBooking.clickPayNow();
     }
 
     @AfterClass
