@@ -18,7 +18,7 @@ public class MMTHotelReservation {
     public void selectCity(String aCity) {
         this.browser.clickWebElementById("city");
         this.browser.fillTextByCSSFollowedByEnterKey("input[placeholder^='Enter city']", aCity);
-        this.browser.sleep(5);
+        this.browser.sleep(2);
         this.browser.clickWebElementById("react-autowhatever-1-section-0-item-0");
     }
 
@@ -62,5 +62,12 @@ public class MMTHotelReservation {
     private void addGuestsToRoom(String aNumberOfAdultsPerRoom, String aNumberOfChildrenPerRoom) {
         this.clickWebElementByCSS("li[data-cy='adults-" + aNumberOfAdultsPerRoom + "']");
         this.clickWebElementByCSS("li[data-cy='children-" + aNumberOfChildrenPerRoom + "']");
+    }
+
+    public void selectTravellingForPurpose(String aPurpose) {
+        //Click on the element Travel For
+        this.clickWebElementByCSS("div[class*='travelFor']");
+        //Select the time from the popup list
+        this.clickWebElementByCSS("li[data-cy='travelFor-" + aPurpose + "']");
     }
 }
