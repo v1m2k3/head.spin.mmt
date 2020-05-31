@@ -124,4 +124,11 @@ public abstract class Browser {
         //This will scroll the web page till end.
         javascriptExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
+
+    public String getHotelName(String aHotelId){
+        WebElement webElement = this.getWebElementById(aHotelId);
+        webElement = webElement.findElement(By.cssSelector("span[id^='htl_id_seo']"));
+        return webElement.getText();
+
+    }
 }

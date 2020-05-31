@@ -5,6 +5,7 @@ import com.hackathon.qa.utilities.Browser;
 public class MMTHotelListing {
     public static final String DIV_CLASS_MM_BACKDROP_WHOLE_BLACK = "div[class='mmBackdrop wholeBlack']";
     Browser browser;
+    String hotelName;
 
     public MMTHotelListing(Browser aBrowser) {
         this.browser = aBrowser;
@@ -28,9 +29,15 @@ public class MMTHotelListing {
         this.browser.clickWebElementByCSS("#hlistpg_fr_user_rating > ul > li:nth-child(2) > span.checkmarkOuter", 1);
     }
 
-    public void selectHotel(int aIndexOfHotel) {
+    public String selectHotel(int aIndexOfHotel) {
         this.browser.scrollToBottomOfThePage();
         String hotelID = "Listing_hotel_" + Integer.toString(aIndexOfHotel - 1);
+        this.hotelName = this.browser.getHotelName(hotelID);
         this.browser.clickWebElementById(hotelID);
+        return this.hotelName;
+    }
+
+    public String getHotelName(){
+        return this.hotelName;
     }
 }

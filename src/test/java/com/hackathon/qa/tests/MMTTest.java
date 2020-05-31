@@ -51,21 +51,23 @@ public class MMTTest {
         hotelReservation.selectCity("Manali");
         hotelReservation.selectCheckinDate("Jun 14");
         hotelReservation.selectCheckoutDate("Jun 20");
-        hotelReservation.selectRoomsAndGuests(2,"2","2");
+        hotelReservation.selectRoomsAndGuests(2, "2", "2");
         hotelReservation.selectTravellingForPurpose("Leisure");
         hotelReservation.applySearch();
     }
 
     @Test
-    public void mmtReservationList(){
-        String url ="https://www.makemytrip.com/hotels/hotel-listing/?_uCurrency=INR&checkin=06142020&checkout=06202020&city=CTDEL&country=IN&locusId=CTDEL&locusType=city&roomStayQualifier=2e2e1e1e2e2e1e1e&searchText=Delhi&visitorId=4cefad61-9197-490c-b63f-84430eb15e18";
+    public void mmtReservationList() {
+        String url = "https://www.makemytrip.com/hotels/hotel-listing/?_uCurrency=INR&checkin=06142020&checkout=06202020&city=CTDEL&country=IN&locusId=CTDEL&locusType=city&roomStayQualifier=2e2e1e1e2e2e1e1e&searchText=Delhi&visitorId=4cefad61-9197-490c-b63f-84430eb15e18";
         //Open makemytrip page in the browser
         this.browser.openPageWithUrl(url);
 
         MMTHotelListing hotelListing = new MMTHotelListing(this.browser);
         hotelListing.setMinimumPriceRange(1000);
         hotelListing.setUserRating();
-        hotelListing.selectHotel(5);
+        String hotelName = hotelListing.selectHotel(5);
+        System.out.println("Name of the selected hotel is : " + hotelName);
+
     }
 
     @AfterClass
