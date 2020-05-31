@@ -48,7 +48,8 @@ public class MMTTest {
         //Click hotels link
         MMTHotelReservation hotelReservation = new MMTHotelReservation(this.browser);
         hotelReservation.selectCity("Manali");
-        hotelReservation.selectFromDate();
+        hotelReservation.selectCheckinDate("Jun 14");
+        hotelReservation.selectCheckoutDate("Jun 20");
     }
 
     @AfterClass

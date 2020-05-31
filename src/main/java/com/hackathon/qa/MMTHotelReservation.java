@@ -21,7 +21,13 @@ public class MMTHotelReservation {
         this.browser.clickWebElementById("react-autowhatever-1-section-0-item-0");
     }
 
-    public void selectFromDate() {
+    public void selectCheckinDate(String aCheckinDate) {
+        this.browser.clickWebElementById("checkin");
+        this.browser.clickWebElementByCSS("div[class*='DayPicker-Day'][aria-label*='" + aCheckinDate + "']");
+    }
 
+    public void selectCheckoutDate(String aCheckoutDate) {
+        this.browser.clickWebElementById("checkin");
+        this.browser.clickWebElementByCSS("div[class*='DayPicker-Day'][aria-label*='" + aCheckoutDate + "']");
     }
 }
