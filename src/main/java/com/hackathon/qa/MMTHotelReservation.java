@@ -74,4 +74,8 @@ public class MMTHotelReservation {
     public void applySearch() {
         this.browser.clickWebElementById("hsw_search_button");
     }
+
+    private void waitForSearchResults(){
+        this.browser.waitUntilWebElementIsInvisible("div[class=listingLoading]");
+    }
 }

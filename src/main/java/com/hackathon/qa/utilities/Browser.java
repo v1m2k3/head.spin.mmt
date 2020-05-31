@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -68,7 +69,8 @@ public abstract class Browser {
     }
 
     public void clickWebElementByCSS(String aCssSelector, int aTimeOutInSeconds) {
-        this.getWebElementByCssSelector(aCssSelector, aTimeOutInSeconds).click();
+        WebElement webElement = this.getWebElementByCssSelector(aCssSelector, aTimeOutInSeconds);
+        webElement.click();
     }
 
     public void implicitWait(long aTimeOutInSeconds) {
@@ -95,5 +97,28 @@ public abstract class Browser {
 
     public void fillTextByCSSFollowedByEnterKey(String aCssSelector, String aSendKeys) {
         this.fillTextByCSS(aCssSelector, aSendKeys).sendKeys(Keys.ENTER);
+    }
+
+    public void waitUntilWebElementIsInvisible(String aCssSelector) {
+        this.waitUntilWebElementIsInvisible(this.getWebElementByCssSelector(aCssSelector, 1));
+    }
+
+    private void waitUntilWebElementIsInvisible(WebElement aWebElement) {
+        WebDriverWait wait = new WebDriverWait(this.driver, 60);
+
+        wait.until(ExpectedConditions.invisibilityOf(aWebElement));
+    }
+
+    public boolean isElementAvailableByCss(String aCssSelector) {
+        return this.getWebElementByCssSelector(aCssSelector, 1) != null;
+    }
+
+    public void slideWebElementCssSelector(String aCssSelector, int aXOffset, int aYOffset){
+        WebElement slider = this.getWebElementByCssSelector(aCssSelector,0);
+
+        Actions sliderAction = new Actions(driver);
+        sliderAction.clickAndHold(slider)
+                .moveByOffset(aXOffset, aYOffset)
+                .release().perform();
     }
 }
