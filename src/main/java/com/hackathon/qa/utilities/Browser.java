@@ -131,4 +131,10 @@ public abstract class Browser {
         return webElement.getText();
 
     }
+
+    public void scrollToWebElement(String aCssSelector) {
+        WebElement webElement = getWebElementByCssSelector(aCssSelector, 1);
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) this.driver;
+        javascriptExecutor.executeScript("arguments[0].scrollIntoView();", webElement);
+    }
 }

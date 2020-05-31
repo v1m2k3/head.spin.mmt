@@ -26,7 +26,9 @@ public class MMTHotelListing {
 
     //Select second element from the list of check boxes
     public void setUserRating() {
-        this.browser.clickWebElementByCSS("#hlistpg_fr_user_rating > ul > li:nth-child(2) > span.checkmarkOuter", 1);
+        String userRating4AndAboveCssSelector = "#hlistpg_fr_user_rating > ul > li:nth-child(2) > span.checkmarkOuter";
+        this.browser.scrollToWebElement("#hlistpg_fr_locality");
+        this.browser.clickWebElementByCSS(userRating4AndAboveCssSelector, 1);
     }
 
     public String selectHotel(int aIndexOfHotel) {
