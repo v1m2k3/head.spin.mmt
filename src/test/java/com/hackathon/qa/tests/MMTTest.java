@@ -50,6 +50,7 @@ public class MMTTest {
         hotelReservation.selectCity("Manali");
         hotelReservation.selectCheckinDate("Jun 14");
         hotelReservation.selectCheckoutDate("Jun 20");
+        hotelReservation.selectRoomsAndGuests(2,"2","2");
     }
 
     @AfterClass
