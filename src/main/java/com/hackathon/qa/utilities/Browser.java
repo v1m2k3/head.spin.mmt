@@ -1,9 +1,6 @@
 package com.hackathon.qa.utilities;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -120,5 +117,11 @@ public abstract class Browser {
         sliderAction.clickAndHold(slider)
                 .moveByOffset(aXOffset, aYOffset)
                 .release().perform();
+    }
+
+    public void scrollToBottomOfThePage(){
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) this.driver;
+        //This will scroll the web page till end.
+        javascriptExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 }

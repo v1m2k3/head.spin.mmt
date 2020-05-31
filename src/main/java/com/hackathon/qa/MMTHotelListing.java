@@ -17,14 +17,20 @@ public class MMTHotelListing {
         }
     }
 
-    public void setMinimumPriceRange(int aAmount){
+    public void setMinimumPriceRange(int aAmount) {
         //3.5 Offset leads to 500Rs.
-        int xOffset = (int) (aAmount/500 * 3.5);
+        int xOffset = (int) (aAmount / 500 * 3.5);
         this.browser.slideWebElementCssSelector("span[class*='input-range__slider']", xOffset, 0);
     }
 
     //Select second element from the list of check boxes
-    public  void setUserRating(){
+    public void setUserRating() {
         this.browser.clickWebElementByCSS("#hlistpg_fr_user_rating > ul > li:nth-child(2) > span.checkmarkOuter", 1);
+    }
+
+    public void selectHotel(int aIndexOfHotel) {
+        this.browser.scrollToBottomOfThePage();
+        String hotelID = "Listing_hotel_" + Integer.toString(aIndexOfHotel - 1);
+        this.browser.clickWebElementById(hotelID);
     }
 }

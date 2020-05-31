@@ -65,6 +65,7 @@ public class MMTTest {
         MMTHotelListing hotelListing = new MMTHotelListing(this.browser);
         hotelListing.setMinimumPriceRange(1000);
         hotelListing.setUserRating();
+        hotelListing.selectHotel(5);
     }
 
     @AfterClass
