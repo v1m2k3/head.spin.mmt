@@ -1,9 +1,6 @@
 package com.hackathon.qa.tests;
 
-import com.hackathon.qa.Constants;
-import com.hackathon.qa.MMTHotelListing;
-import com.hackathon.qa.MMTHotelReservation;
-import com.hackathon.qa.MMTLogin;
+import com.hackathon.qa.*;
 import com.hackathon.qa.utilities.Browser;
 import com.hackathon.qa.utilities.ChromeBrowser;
 import org.testng.Assert;
@@ -18,6 +15,53 @@ public class MMTTest {
     @BeforeClass
     public void start() {
         this.browser = new ChromeBrowser();
+    }
+
+    @Test
+    public void hackathonTest() {
+        //Open makemytrip page in the browser
+        this.browser.openPageWithUrl(Constants.URL);
+
+        //Check if title of the page is as expected.
+        String title = this.browser.getDriver().getTitle();
+        System.out.println("Page title: " + title);
+        Assert.assertTrue(title.startsWith("MakeMyTrip"), "Title mismatch...");
+
+        //Login into MMT
+        MMTLogin loginPage = new MMTLogin(this.browser);
+        loginPage.doLogin(Constants.USERNAME_VALUE, Constants.PASSWORD_VALUE);
+
+        //Click hotels link
+        MMTHotelReservation hotelReservation = new MMTHotelReservation(this.browser);
+        hotelReservation.selectCity("Manali");
+        hotelReservation.selectCheckinDate("Jun 14");
+        hotelReservation.selectCheckoutDate("Jun 20");
+        hotelReservation.selectRoomsAndGuests(1, "2", "0");
+        hotelReservation.selectTravellingForPurpose("Leisure");
+        hotelReservation.applySearch();
+
+        //list of hotels are populated, select 5th hotel in the list.
+        //print the hotel name
+        MMTHotelListing hotelListing = new MMTHotelListing(this.browser);
+        hotelListing.setMinimumPriceRange(1000);
+        hotelListing.setUserRating();
+        String hotelName = hotelListing.selectHotel(5);
+        System.out.println("Name of the selected hotel is : " + hotelName);
+
+        //After selecting the hotel a new tab is opened.
+        //lets wait for the page to be loaded with all the content.
+        this.browser.sleep(10);
+
+        //Close all other tabs but leaving the tab that contains text \"Hotel Details Page\" in the title.
+        this.browser.closeOtherTabs("Hotel Details Page");
+        String newPageTitle = this.browser.getDriver().getTitle();
+        Assert.assertTrue(newPageTitle.contains("Hotel Details Page"), "Unable to set driver to \"Hotel Details Page\" tab." );
+        System.out.println(newPageTitle);
+
+        //Navigate to the first Room option
+        //Select room
+        HotelDetails hotelDetails = new HotelDetails(this.browser);
+        hotelDetails.selectFirstRoomOption();
     }
 
     @Test
@@ -68,6 +112,15 @@ public class MMTTest {
         String hotelName = hotelListing.selectHotel(5);
         System.out.println("Name of the selected hotel is : " + hotelName);
 
+        this.browser.sleep(10);
+
+        this.browser.closeOtherTabs("Hotel Details Page");
+        String newPageTitle = this.browser.getDriver().getTitle();
+        Assert.assertTrue(newPageTitle.contains("Hotel Details Page"), "Unable to set driver to \"Hotel Details Page\" tab." );
+        System.out.println(newPageTitle);
+
+        HotelDetails hotelDetails = new HotelDetails(this.browser);
+        hotelDetails.selectFirstRoomOption();
     }
 
     @AfterClass
