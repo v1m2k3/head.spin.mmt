@@ -32,11 +32,11 @@ public class MMTLogin {
     }
 
     private void sendKeysToUsername(String aUserName) {
-        this.browser.fillTextById(Constants.USERNAME_ID, aUserName);
+        this.browser.clearAndFillTextById(Constants.USERNAME_ID, aUserName);
     }
 
     private void sendKeysToPassword(String aPassword) {
-        this.browser.fillTextById(Constants.PASSWORD_ID, aPassword);
+        this.browser.clearAndFillTextById(Constants.PASSWORD_ID, aPassword);
     }
 
     private void clickOnloginOrCreateAccountElement() {

@@ -16,6 +16,12 @@ public class MMTHotelReservation {
     }
 
     public void selectCity(String aCity) {
-        this.browser.fillTextById("city", aCity);
+        this.browser.clickWebElementById("city");
+        this.browser.fillTextByCSSFollowedByEnterKey("input[placeholder^='Enter city']", aCity);
+        this.browser.clickWebElementById("react-autowhatever-1-section-0-item-0");
+    }
+
+    public void selectFromDate() {
+
     }
 }

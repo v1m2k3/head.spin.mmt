@@ -1,6 +1,7 @@
 package com.hackathon.qa.utilities;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,7 +26,11 @@ public abstract class Browser {
         this.driver.get(aUrl);
     }
 
-    public WebElement fillTextById(String aId, String aSendKeys) {
+    public void fillTextById(String aId, String aSendKeys) {
+        this.getWebElementById(aId).sendKeys(aSendKeys);
+    }
+
+    public WebElement clearAndFillTextById(String aId, String aSendKeys) {
         WebElement webElement = this.getWebElementById(aId);
         webElement.clear();
         webElement.sendKeys(aSendKeys);
@@ -39,6 +44,10 @@ public abstract class Browser {
         // Explicit Wait
         WebElement webElement = wait.until(webDriver -> webDriver.findElement(By.id(aId)));
         return webElement;
+    }
+
+    public void clickWebElementById(String aId) {
+        this.getWebElementById(aId).click();
     }
 
     private WebElement getWebElementByCssSelector(String aCssSelector, long aTimeOutInSeconds) {
@@ -76,5 +85,15 @@ public abstract class Browser {
 
     public void quit() {
         this.driver.quit();
+    }
+
+    public WebElement fillTextByCSS(String aCssSelector, String aSendKeys) {
+        WebElement webElement = this.getWebElementByCssSelector(aCssSelector, 2);
+        webElement.sendKeys(aSendKeys);
+        return webElement;
+    }
+
+    public void fillTextByCSSFollowedByEnterKey(String aCssSelector, String aSendKeys) {
+        this.fillTextByCSS(aCssSelector, aSendKeys).sendKeys(Keys.ENTER);
     }
 }
