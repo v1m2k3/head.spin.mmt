@@ -70,4 +70,8 @@ public class MMTHotelReservation {
         //Select the time from the popup list
         this.clickWebElementByCSS("li[data-cy='travelFor-" + aPurpose + "']");
     }
+
+    public void applySearch() {
+        this.browser.clickWebElementById("hsw_search_button");
+    }
 }

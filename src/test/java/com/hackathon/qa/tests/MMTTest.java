@@ -52,6 +52,7 @@ public class MMTTest {
         hotelReservation.selectCheckoutDate("Jun 20");
         hotelReservation.selectRoomsAndGuests(2,"2","2");
         hotelReservation.selectTravellingForPurpose("Leisure");
+        hotelReservation.applySearch();
     }
 
     @AfterClass
